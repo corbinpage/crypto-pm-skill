@@ -1,0 +1,20 @@
+{
+  "lookbackHours": 24,
+  "model": "claude-opus-4-7",
+  "notion": {
+    "synthesisParentPageId": "REPLACE_WITH_USER_FEEDBACK_SYNTHESIS_PAGE_ID",
+    "backlogDatabaseId": "REPLACE_WITH_BACKLOG_DB_ID",
+    "statusPropertyName": "Status",
+    "categoryPropertyName": "Category",
+    "customerAttributionsPropertyName": "Customer Attributions",
+    "sourcesPropertyName": "Sources",
+    "firstRaisedPropertyName": "First Raised",
+    "lastRaisedPropertyName": "Last Raised",
+    "newTicketStatus": "Prioritize",
+    "doneStatus": "Done"
+  },
+  "enabledAdapters": [
+    "notion-notes",
+    "gmail-meetings"
+  ]
+}

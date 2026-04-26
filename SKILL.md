@@ -10,6 +10,7 @@ Crypto-native product management skill. Combines full PM workflows with deep Web
 See [WORKFLOWS.md](WORKFLOWS.md) for step-by-step processes.
 See [CRYPTO-REFERENCE.md](CRYPTO-REFERENCE.md) for tickers, terms, and protocol details.
 See [BANKR.md](BANKR.md) for onchain execution via natural language.
+See [routines/](routines/) for scheduled background automations that complement these workflows (e.g. daily user-feedback synthesis).
 
 ## Quick Reference — Workflows
 

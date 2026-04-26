@@ -69,8 +69,20 @@ crypto-pm/
 ├── SKILL.md              # Entry point — triggers and workflow index
 ├── WORKFLOWS.md          # All 7 PM workflows with crypto-specific guidance
 ├── CRYPTO-REFERENCE.md   # Tickers, glossary, PM metrics, chain concepts
-└── BANKR.md              # Bankr API auth, CLI, REST, and safety practices
+├── BANKR.md              # Bankr API auth, CLI, REST, and safety practices
+└── routines/             # Background automations (see routines/README.md)
+    └── user-feedback-synthesis/   # Daily customer-feedback → Notion ticket pipeline
 ```
+
+## Routines
+
+Beyond the interactive PM workflows, this repo also hosts **routines** —
+background automations that run on a schedule to maintain the PM flow without
+manual intervention. See [`routines/README.md`](./routines/README.md). The
+first one is **User Feedback Synthesis**: a daily TypeScript job that pulls
+customer feedback from configured sources, publishes a synthesis page to
+Notion, and creates deduplicated tickets in a Backlog database in the
+Paymagic team space.
 
 ## Sources
 
