@@ -1,2 +1,0 @@
-# Daily at 07:00 local time. Adjust path and time as needed.
-0 7 * * * cd /path/to/crypto-pm-skill/routines/user-feedback-synthesis && ./run.sh >> /var/log/user-feedback-synthesis.log 2>&1

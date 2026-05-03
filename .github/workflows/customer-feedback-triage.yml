@@ -1,0 +1,52 @@
+name: customer-feedback-triage
+
+on:
+  schedule:
+    - cron: "0 14 * * *"   # daily at 14:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write          # required to commit the README status block back to git
+
+concurrency:
+  group: customer-feedback-triage
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: routines/customer-feedback-triage
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: routines/customer-feedback-triage/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run routine
+        run: npm start
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          NOTION_MCP_URL:    ${{ secrets.NOTION_MCP_URL }}
+          NOTION_MCP_TOKEN:  ${{ secrets.NOTION_MCP_TOKEN }}
+          ROOT_PAGE_ID:      ${{ vars.ROOT_PAGE_ID }}
+          TRIAGE_TABLE_ID:   ${{ vars.TRIAGE_TABLE_ID }}
+          BACKLOG_DB_ID:     ${{ vars.BACKLOG_DB_ID }}
+
+      - name: Commit routine status to README
+        if: always()      # commit on success AND failure so errors surface in git
+        working-directory: ${{ github.workspace }}
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add routines/customer-feedback-triage/README.md
+          git diff --cached --quiet && exit 0
+          git commit -m "chore: routine status [skip ci]"
+          git push

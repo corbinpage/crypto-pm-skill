@@ -1,0 +1,10 @@
+{
+  "model": "claude-opus-4-7",
+  "mcpBetaHeader": "mcp-client-2025-04-04",
+  "mcpServerName": "notion",
+  "maxTokens": {
+    "crawl": 32000,
+    "triage": 16000,
+    "write": 16000
+  }
+}

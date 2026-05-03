@@ -1,46 +1,35 @@
 # Routines
 
-Background automations that complement the `crypto-pm` skill. Each routine is
-self-contained: its own `package.json`, its own entry point, its own cron
-schedule. Routines write to and read from Notion (the Paymagic team space) so
-that the human PM can review, edit, and promote work between states without
-the routine ever reaching into the team's source of truth uninvited.
+Background automations that complement the `crypto-pm` skill. Each routine is self-contained: its own `package.json`, its own entry point, its own scheduler config. State is durable in Notion or in the routine's own `README.md` — never in an external DB.
 
 ## Routines in this directory
 
-| Routine | What it does | Schedule |
-|---|---|---|
-| [`user-feedback-synthesis`](./user-feedback-synthesis/) | Pull customer feedback from configured sources (Notion notes, Gmail/Drive meeting transcripts), publish a daily synthesis page to Notion, and create deduplicated tickets in the Backlog DB. | Daily |
+| Routine | What it does | Schedule | Hosting |
+|---|---|---|---|
+| [`customer-feedback-triage`](./customer-feedback-triage/) | Crawl a Notion documentation subtree via Claude+MCP, extract customer feedback edited since the last run, triage against the existing backlog (re-raises auto-applied; new tickets staged), write review rows into a Notion Triage table. | Daily | GitHub Actions |
 
 ## Architecture
 
-- **Orchestrator** — TypeScript code that handles deterministic IO (fetching
-  from sources, writing to Notion).
-- **Adapters** — markdown files in each routine's `sources/` directory that
-  describe how to fetch and normalize items from a given source. New sources
-  drop in as new markdown files.
-- **State** — Notion is the system of record. No external DB.
-- **LLM** — the Anthropic SDK is used for judgement calls (extraction,
-  categorization, synthesis drafting, semantic dedup) with prompt caching on
-  the stable system + adapter prompt blocks.
+- **Scheduler** — GitHub Actions (`.github/workflows/<routine>.yml`). The workflow checks out the repo, installs deps, runs `npm start`, and commits any state mutations the routine made back to git.
+- **Orchestrator** — TypeScript code in `src/`. Reads state from the routine's own `README.md` (durable, in-repo, human-readable). Sequences Claude calls. Validates structured outputs with Zod.
+- **Notion + judgement layer** — Claude with the **Notion MCP** server attached. All Notion fetching and all analysis (extraction, triage, writes) happen through Claude tool-loops via the connector. No direct `@notionhq/client` calls in routines that follow this pattern.
+- **State** — each routine keeps its last-run timestamp + summary + last error in an HTML-comment block inside its own `README.md`. The workflow commits the README on every run (success or failure) with `[skip ci]`.
 
-## Running locally
+## Adding a new routine
 
-Each routine has its own `run.sh`. From the routine directory:
+1. Create `routines/<name>/` with `package.json`, `tsconfig.json`, `src/`, `prompts/`, `README.md` (including the `<!-- ROUTINE_STATUS_START -->` … `<!-- ROUTINE_STATUS_END -->` block).
+2. Add `.github/workflows/<name>.yml` with `permissions: contents: write` and the commit-back step (`if: always()`).
+3. Add a row to the table above.
+4. Document required GitHub secrets and repository variables in the routine's README.
+
+## Local development
+
+From the routine directory:
 
 ```bash
-npm install
 cp .env.example .env  # fill in
-cp config.example.json config.json  # fill in IDs
-./run.sh
+npm install
+npm start
 ```
 
-## Cron
-
-Each routine ships a `crontab.example`. Install with `crontab -e`.
-
-## Future hosting
-
-The orchestrators are written so they can lift to Vercel cron functions
-without code changes — the `runOnce()` export is the entry point both the
-local CLI and a future `api/cron/*.ts` handler call.
+The README's status block updates locally just like in CI.
