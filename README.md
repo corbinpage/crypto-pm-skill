@@ -69,8 +69,22 @@ crypto-pm/
 ├── SKILL.md              # Entry point — triggers and workflow index
 ├── WORKFLOWS.md          # All 7 PM workflows with crypto-specific guidance
 ├── CRYPTO-REFERENCE.md   # Tickers, glossary, PM metrics, chain concepts
-└── BANKR.md              # Bankr API auth, CLI, REST, and safety practices
+├── BANKR.md              # Bankr API auth, CLI, REST, and safety practices
+└── routines/             # Background automations (see routines/README.md)
+    └── user-feedback-synthesis/   # Daily customer-feedback → Notion ticket pipeline
 ```
+
+## Routines
+
+Beyond the interactive PM workflows, this repo also hosts **routines** —
+background automations that run on a schedule to maintain the PM flow without
+manual intervention. See [`routines/README.md`](./routines/README.md). The
+first one is **Customer Feedback Triage**: a daily GitHub Actions workflow
+that crawls a Notion documentation subtree via Claude+MCP, extracts customer
+feedback edited since the last run, triages it against the existing backlog
+(re-raises auto-applied; new tickets staged behind a `Do?` checkbox), and
+writes review rows into a Notion Triage table. Run state and errors live in
+the routine's own `README.md`.
 
 ## Sources
 
