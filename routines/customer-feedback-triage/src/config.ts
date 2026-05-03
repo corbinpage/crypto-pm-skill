@@ -10,7 +10,7 @@ export const PROMPTS_DIR = path.join(ROUTINE_ROOT, "prompts");
 
 const ConfigSchema = z.object({
   model: z.string().default("claude-opus-4-7"),
-  mcpBetaHeader: z.string().default("mcp-client-2025-04-04"),
+  mcpBetaHeader: z.string().default("mcp-client-2025-11-20"),
   mcpServerName: z.string().default("notion"),
   maxTokens: z
     .object({
