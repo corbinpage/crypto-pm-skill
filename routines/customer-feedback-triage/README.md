@@ -7,14 +7,20 @@ All Notion fetching and analysis runs through **Claude with the Notion MCP serve
 ## Status
 
 <!-- ROUTINE_STATUS_START -->
-**Last run:** `1970-01-01T00:00:00Z` &nbsp;·&nbsp; **Status:** ⏳ never &nbsp;·&nbsp; **Duration:** —
+**Last run:** `1970-01-01T00:00:00Z` &nbsp;·&nbsp; **Status:** ❌ failure &nbsp;·&nbsp; **Duration:** 0.2s
 
-_(no summary — routine has not run yet)_
+_(no summary — run did not complete)_
 
-<details><summary>Last error (none)</summary>
+<details open><summary>Last error</summary>
 
 ```
-(no error on most recent run)
+400 {"type":"error","error":{"type":"invalid_request_error","message":"MCP server 'notion' is defined but not referenced by any `mcp_toolset` in `tools`."},"request_id":"req_011CafpoxwvRPeXACLRionPD"}
+
+Error: 400 {"type":"error","error":{"type":"invalid_request_error","message":"MCP server 'notion' is defined but not referenced by any `mcp_toolset` in `tools`."},"request_id":"req_011CafpoxwvRPeXACLRionPD"}
+    at Function.generate (/home/runner/work/crypto-pm-skill/crypto-pm-skill/routines/customer-feedback-triage/node_modules/@anthropic-ai/sdk/src/core/error.ts:75:14)
+    at Anthropic.makeStatusError (/home/runner/work/crypto-pm-skill/crypto-pm-skill/routines/customer-feedback-triage/node_modules/@anthropic-ai/sdk/src/client.ts:516:28)
+    at Anthropic.makeRequest (/home/runner/work/crypto-pm-skill/crypto-pm-skill/routines/customer-feedback-triage/node_modules/@anthropic-ai/sdk/src/client.ts:752:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
 ```
 
 </details>
