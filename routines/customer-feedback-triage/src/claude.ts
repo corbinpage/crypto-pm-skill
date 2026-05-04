@@ -54,6 +54,13 @@ export async function callClaudeMCP<T>(
       name: s.name,
       authorization_token: s.token,
     })),
+    // Beta `mcp-client-2025-11-20` requires explicit opt-in: each declared
+    // MCP server must be referenced by an `mcp_toolset` entry in `tools` to
+    // expose its tools to the model.
+    tools: mcpServers.map((s) => ({
+      type: "mcp_toolset",
+      server_name: s.name,
+    })),
     betas: [betaHeader],
   };
 
