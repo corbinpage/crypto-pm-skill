@@ -14,9 +14,9 @@ _(no summary — run did not complete)_
 <details open><summary>Last error</summary>
 
 ```
-400 {"type":"error","error":{"type":"invalid_request_error","message":"tools.0.mcp_toolset.mcp_server_name: Field required"},"request_id":"req_011CaoVpSKmirZrL9TwyxXXB"}
+400 {"type":"error","error":{"type":"invalid_request_error","message":"tools.0.mcp_toolset.mcp_server_name: Field required"},"request_id":"req_011CaqLT2ZQ6Gk3bjrtfqMvG"}
 
-Error: 400 {"type":"error","error":{"type":"invalid_request_error","message":"tools.0.mcp_toolset.mcp_server_name: Field required"},"request_id":"req_011CaoVpSKmirZrL9TwyxXXB"}
+Error: 400 {"type":"error","error":{"type":"invalid_request_error","message":"tools.0.mcp_toolset.mcp_server_name: Field required"},"request_id":"req_011CaqLT2ZQ6Gk3bjrtfqMvG"}
     at Function.generate (/home/runner/work/crypto-pm-skill/crypto-pm-skill/routines/customer-feedback-triage/node_modules/@anthropic-ai/sdk/src/core/error.ts:75:14)
     at Anthropic.makeStatusError (/home/runner/work/crypto-pm-skill/crypto-pm-skill/routines/customer-feedback-triage/node_modules/@anthropic-ai/sdk/src/client.ts:516:28)
     at Anthropic.makeRequest (/home/runner/work/crypto-pm-skill/crypto-pm-skill/routines/customer-feedback-triage/node_modules/@anthropic-ai/sdk/src/client.ts:752:24)
