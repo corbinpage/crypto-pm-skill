@@ -7,16 +7,16 @@ All Notion fetching and analysis runs through **Claude with the Notion MCP serve
 ## Status
 
 <!-- ROUTINE_STATUS_START -->
-**Last run:** `1970-01-01T00:00:00Z` &nbsp;·&nbsp; **Status:** ❌ failure &nbsp;·&nbsp; **Duration:** 0.3s
+**Last run:** `1970-01-01T00:00:00Z` &nbsp;·&nbsp; **Status:** ❌ failure &nbsp;·&nbsp; **Duration:** 0.2s
 
 _(no summary — run did not complete)_
 
 <details open><summary>Last error</summary>
 
 ```
-400 {"type":"error","error":{"type":"invalid_request_error","message":"tools.0.mcp_toolset.mcp_server_name: Field required"},"request_id":"req_011Caw72gKpg8uTLKY9Wu4uc"}
+400 {"type":"error","error":{"type":"invalid_request_error","message":"tools.0.mcp_toolset.mcp_server_name: Field required"},"request_id":"req_011Caxyy6MH64VXqpQFNt4zE"}
 
-Error: 400 {"type":"error","error":{"type":"invalid_request_error","message":"tools.0.mcp_toolset.mcp_server_name: Field required"},"request_id":"req_011Caw72gKpg8uTLKY9Wu4uc"}
+Error: 400 {"type":"error","error":{"type":"invalid_request_error","message":"tools.0.mcp_toolset.mcp_server_name: Field required"},"request_id":"req_011Caxyy6MH64VXqpQFNt4zE"}
     at Function.generate (/home/runner/work/crypto-pm-skill/crypto-pm-skill/routines/customer-feedback-triage/node_modules/@anthropic-ai/sdk/src/core/error.ts:75:14)
     at Anthropic.makeStatusError (/home/runner/work/crypto-pm-skill/crypto-pm-skill/routines/customer-feedback-triage/node_modules/@anthropic-ai/sdk/src/client.ts:516:28)
     at Anthropic.makeRequest (/home/runner/work/crypto-pm-skill/crypto-pm-skill/routines/customer-feedback-triage/node_modules/@anthropic-ai/sdk/src/client.ts:752:24)
